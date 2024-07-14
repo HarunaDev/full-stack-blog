@@ -25,5 +25,5 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name="get_token"), #link token pair view to path
     path('api/token/refresh/', TokenRefreshView.as_view(), name="refresh"), #link token refresh view to path
     path('api-auth/', include("rest_framework.urls")), #link all rest frame work urls
-
+    path('api/', include('api.urls')), #link any additional path not included in the urlpatterns list to the urls.py file in '/api'
 ]
