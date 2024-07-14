@@ -24,6 +24,15 @@ class ArticleListCreate(generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
+# create view to delete article
+class ArticleDelete(generics.DestroyAPIView):
+    serializer_class = ArticleSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user #set user to the authenticated user
+        return Article.objects.filter(author=user) #gives us all the articles written by this user, you can use all() to get all the articles
+
 
 # implement creating a new user view
 class CreateUserView(generics.CreateAPIView):
