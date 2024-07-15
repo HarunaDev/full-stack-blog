@@ -15,7 +15,25 @@ function ProtectedRouter({children}) {
 
     // refresh access token automatically
     const refreshToken = async () => {
+        // get refresh token from localstorage
+        const refreshToken = localStorage.getItem(REFRESH_TOKEN)
 
+        // make api i call to get a new access token
+        try{
+            const res = await api.post("/api/token/refresh/", {
+                refresh: refreshToken
+            })
+            // if call was successful, store access token from response in local storage and set authorization to true else set it to false
+            if (res.status === 200) {
+                localStorage.setItem(ACCESS_TOKEN, res.data.access)
+                setIsAuthorized(true)
+            } else {
+                setIsAuthorized(false)
+            }
+        } catch (error) {
+            console.log(error)
+            setIsAuthorized(false)
+        }
     }
 
     // auth function to check if token needs to be refreshed
