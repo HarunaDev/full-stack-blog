@@ -27,8 +27,29 @@ import {
     const navigate = useNavigate()
 
     // handle submit function
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        setLoading(true)
         e.preventDefault()
+
+        // try to send request then catch error and set loading to false if the request was successful or not
+        try {
+            // send request
+            const res = await api.post(route, { username, password })
+
+            // if method login & successful, we want to get the access & refresh token then store it then navigate to home or register is it was not successful
+            if (method === 'login'){
+                localStorage.setItem(ACCESS_TOKEN, res.data.access)
+                localStorage.setItem(REFRESH_TOKEN, res.data.refresh)
+                navigate("/")              
+            } else {
+                navigate("/login")
+            }
+
+        } catch (error) {
+            alert(error)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
