@@ -4,7 +4,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import NotFound from "./pages/NotFound"
 import Home from "./pages/Home"
-import ProtectedRouter from "./components/ProtectedRoute"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 // write logout function
 function Logout() {
@@ -21,9 +21,21 @@ function RegisterAndLogout(){
 function App() {
 
   return (
-    <>
-      <h1>Hello world</h1>      
-    </>
+
+    <BrowserRouter >
+    <Routes>
+      {/* wrap home in protected route so that only authorized users can access that page */}
+      <Route path="/" element={
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
+      } />
+
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<RegisterAndLogout />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+    </BrowserRouter>
   )
 }
 
