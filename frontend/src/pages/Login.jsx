@@ -1,7 +1,11 @@
+import Form from "../components/Form"
+
 function Login(){
     return (
         <>
-            <h1>Welcome to Login</h1>            
+            <div className="flex items-center justify-center min-h-screen">
+            <Form />
+            </div>           
         </>
     )
 }
