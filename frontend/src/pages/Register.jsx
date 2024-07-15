@@ -4,7 +4,7 @@ function Register(){
     return (
         <>
             <div className="flex items-center justify-center min-h-screen">
-            <Form route='/api/user/register' method='register' />
+            <Form route='/api/user/register/' method='register' />
             </div>                   
         </>
     )
