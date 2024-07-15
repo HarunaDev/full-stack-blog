@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 
 // Protected route component for only authorized users
 // eslint-disable-next-line react/prop-types
-function ProtectedRouter({children}) {
+function ProtectedRoute({children}) {
     // create state to track authorization status
     const [isAuthorized, setIsAuthorized] = useState(null)
 
@@ -72,4 +72,4 @@ function ProtectedRouter({children}) {
     return isAuthorized ? children : <Navigate to="/login" />
 }
 
-export default ProtectedRouter
+export default ProtectedRoute
