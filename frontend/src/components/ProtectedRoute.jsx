@@ -5,13 +5,18 @@ import { Navigate } from "react-router-dom"
 import { jwtDecode } from "jwt-decode"
 import api from "../api"
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // Protected route component for only authorized users
 // eslint-disable-next-line react/prop-types
 function ProtectedRouter({children}) {
     // create state to track authorization status
     const [isAuthorized, setIsAuthorized] = useState(null)
+
+    // add use effect hook to call auth function
+    useEffect(() => {
+        auth().catch(() => setIsAuthorized(false)) // set authorization to false if any errors are caught
+    })
 
     // refresh access token automatically
     const refreshToken = async () => {
