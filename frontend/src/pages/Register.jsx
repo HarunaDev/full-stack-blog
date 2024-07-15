@@ -1,7 +1,11 @@
+import Form from "../components/Form"
+
 function Register(){
     return (
         <>
-            <h1>Welcome to Register</h1>            
+            <div className="flex items-center justify-center min-h-screen">
+            <Form route='/api/user/register' method='register' />
+            </div>                   
         </>
     )
 }
