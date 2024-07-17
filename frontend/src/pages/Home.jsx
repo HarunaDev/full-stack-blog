@@ -16,6 +16,7 @@ function Home(){
         .get("/api/notes/")
         .then((res) => res.data)
         .then((data) => setArticle(data))
+        .catch((err) => alert(err));
     }
 
     return (
