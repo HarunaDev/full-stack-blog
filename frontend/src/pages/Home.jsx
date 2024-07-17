@@ -24,6 +24,18 @@ function Home(){
         .catch((err) => alert(err));
     }
 
+    // function to delete an article
+    const deleteArticle = (id) => {
+        // make api call to that path
+        api.delete(`/api/articles/delete/${id}/`)
+        .then((res) => {
+            // if status was successful or not
+            if (res.status === 204) alert("Article deleted")
+            else alert("Failed to delete")
+        }).catch((err) => alert(err))
+        getArticles()
+    }
+
     return (
         <>
             <h1>Welcome to home</h1>            
