@@ -36,6 +36,18 @@ function Home(){
         getArticles()
     }
 
+    // function to create an article
+    const createArticle = (e) => {
+        e.preventDefault()
+        api.post("/api/articles/", { content, title })
+        .then((res) => {
+            if (res.status === 201) alert("Article has been created")
+            else alert("Failed to create article")
+        })
+        .catch((err) => alert(err))
+        getArticles()
+    }
+
     return (
         <>
             <h1>Welcome to home</h1>            
