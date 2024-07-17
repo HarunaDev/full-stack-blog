@@ -18,7 +18,7 @@ function Home(){
     // function to get articles
     const getArticles = () => {
         api
-        .get("/api/notes/")
+        .get("/api/articles/")
         .then((res) => res.data)
         .then((data) => {setArticle(data); console.log(data)})
         .catch((err) => alert(err));
