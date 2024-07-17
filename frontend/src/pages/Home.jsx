@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import api from "../api"
 
 function Home(){
@@ -10,12 +10,17 @@ function Home(){
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
 
+    // put call getArticles inside of a useEffect hook
+    useEffect(() => {
+        getArticles()
+    }, [])
+
     // function to get articles
     const getArticles = () => {
         api
         .get("/api/notes/")
         .then((res) => res.data)
-        .then((data) => setArticle(data))
+        .then((data) => {setArticle(data); console.log(data)})
         .catch((err) => alert(err));
     }
 
