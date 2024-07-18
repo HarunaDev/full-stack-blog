@@ -33,9 +33,10 @@ function Home(){
         .then((res) => {
             // if status was successful or not
             if (res.status === 204) alert("Article deleted")
-            else alert("Failed to delete")
+            else alert("Failed to delete");
+            getArticles()
         }).catch((err) => alert(err))
-        getArticles()
+        
     }
 
     // function to create an article
@@ -44,10 +45,10 @@ function Home(){
         api.post("/api/articles/", { content, title })
         .then((res) => {
             if (res.status === 201) alert("Article has been created")
-            else alert("Failed to create article")
+            else alert("Failed to create article");
+            getArticles()
         })
         .catch((err) => alert(err))
-        getArticles()
     }
 
     return (
