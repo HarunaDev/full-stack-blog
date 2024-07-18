@@ -55,7 +55,7 @@ function Home(){
         <h1>Welcome to home</h1>
 
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <form className="max-w-xl mx-auto p-6 space-y-8 bg-white shadow-md rounded-lg">
+        <form onSubmit={createArticle} className="max-w-xl mx-auto p-6 space-y-8 bg-white shadow-md rounded-lg">
       <div className="space-y-8 divide-y divide-gray-200">
         <div className="space-y-8">
           <div className="space-y-4">
@@ -98,6 +98,7 @@ function Home(){
                   rows={3}
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   placeholder="Write a few sentences about anything."
+                  value={content}
                   required
                   onChange={(e) => setContent(e.target.value)}
                 />
