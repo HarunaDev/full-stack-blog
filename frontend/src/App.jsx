@@ -5,6 +5,7 @@ import Register from "./pages/Register"
 import NotFound from "./pages/NotFound"
 import Home from "./pages/Home"
 import ProtectedRoute from "./components/ProtectedRoute"
+import Article from "./components/Article"
 
 // write logout function
 function Logout() {
@@ -35,6 +36,7 @@ function App() {
       <Route path="/logout" element={<Logout />} />
       <Route path="/register" element={<RegisterAndLogout />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/article" element={<Article />} />
     </Routes>
     </BrowserRouter>
   )
