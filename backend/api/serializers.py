@@ -20,6 +20,6 @@ class UserSerializer(serializers.ModelSerializer):
 # Create serializer for article
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
-        model: Article
+        model = Article
         fields = ["id", "title", "content", "created_at", "author"]
         extra_kwargs = {"author": {"read_only": True}} #it automatically sets who the author is based on the user
