@@ -8,7 +8,7 @@ class Article(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     # links author to the user and whenever the user is being deleted all of the notes will be deleted
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="story")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="articles")
 
     def __str__(self):
         return self.title
