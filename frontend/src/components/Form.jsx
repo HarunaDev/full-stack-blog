@@ -5,6 +5,7 @@ import api from "../api";
 import { useNavigate } from "react-router-dom";
 // import { TextField } from '@material-ui/core'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
+import LoadingIndicator from "./LoadingIndicator";
 
 import {
     Card,
@@ -92,6 +93,7 @@ import {
                 className: "before:content-none after:content-none",
               }}
             />
+            {loading && <LoadingIndicator />}
           </div>
           <Checkbox
             label={
