@@ -12,12 +12,12 @@ function Home(){
     // store content from form for creating new article in useState
     const [content, setContent] = useState("")
     const [title, setTitle] = useState("")
-    // const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null)
 
     // put call getArticles inside of a useEffect hook
     useEffect(() => {
         getArticles()
-        // getUser()
+        getUser()
     }, [])
 
     // function to get articles
@@ -29,16 +29,16 @@ function Home(){
         .catch((err) => alert(err));
     }
 
-    // const getUser = () => {
-    //   api
-    //   .get("/api/user/")
-    //   .then((res) => res.data)
-    //   .then((data) => {
-    //       setUser(data.username);
-    //       console.log(data);
-    //   })
-    //   .catch((err) => alert(err));
-    // };
+    const getUser = () => {
+      api
+      .get("/api/user/")
+      .then((res) => res.data)
+      .then((data) => {
+          setUser(data.username);
+          console.log(data);
+      })
+      .catch((err) => alert(err));
+    };
 
     // function to delete an article
     const deleteArticle = (id) => {
@@ -68,7 +68,7 @@ function Home(){
 
     return (
         <>
-        <h1>Welcome hser</h1>
+        <h1>Welcome {user}</h1>
 
         {articles.map((article) => <Article article={article} onDelete={deleteArticle} key={article.id} />)}
 
