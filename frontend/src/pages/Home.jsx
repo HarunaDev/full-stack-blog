@@ -1,12 +1,13 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react"
 import api from "../api"
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-
+import Article from "../components/Article";
 
 function Home(){
     // send auth request to get all the articles written, store it in an array with useState
-    const [article, setArticle] = useState([]);
+    const [articles, setArticles] = useState([]);
 
     // store content from form for creating new article in useState
     const [content, setContent] = useState("")
@@ -22,14 +23,15 @@ function Home(){
         api
         .get("/api/articles/")
         .then((res) => res.data)
-        .then((data) => {setArticle(data); console.log(data)})
+        .then((data) => {setArticles(data); console.log(data)})
         .catch((err) => alert(err));
     }
 
     // function to delete an article
     const deleteArticle = (id) => {
         // make api call to that path
-        api.delete(`/api/articles/delete/${id}/`)
+        api
+        .delete(`/api/articles/delete/${id}/`)
         .then((res) => {
             // if status was successful or not
             if (res.status === 204) alert("Article deleted")
@@ -54,6 +56,8 @@ function Home(){
     return (
         <>
         <h1>Welcome to home</h1>
+
+        {articles.map((article) => <Article article={article} onDelete={deleteArticle} key={article.id} />)}
 
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <form onSubmit={createArticle} className="max-w-xl mx-auto p-6 space-y-8 bg-white shadow-md rounded-lg">
